@@ -1,0 +1,139 @@
+{% extends 'main.html' %}
+{% block title %}
+  Checkout
+{% endblock %}
+{% block content %}
+  <div class="p-5 rounded-[10px] bg-white">
+    <div class="flex gap-2 items-center">
+      <svg height="16" viewBox="0 0 12 16" width="12" class="shopee-svg-icon icon-location-marker">
+        <path d="M6 3.2c1.506 0 2.727 1.195 2.727 2.667 0 1.473-1.22 2.666-2.727 2.666S3.273 7.34 3.273 5.867C3.273 4.395 4.493 3.2 6 3.2zM0 6c0-3.315 2.686-6 6-6s6 2.685 6 6c0 2.498-1.964 5.742-6 9.933C1.613 11.743 0 8.498 0 6z" fill="#ee2624" fill-rule="evenodd"></path>
+      </svg>
+      <p class="text-[#ee2624] text-[18px] font-bold">Địa chỉ nhận hàng</p>
+    </div>
+    <div class="flex gap-5 mt-5">
+      <p class="text-black text-[16px] font-bold">Nguyễn Quốc Việt (+84) 389587253</p>
+      <p class="text-black text-[16px] font-medium">Số 71, Đường Nguyễn Duy, Phường Khuê Trung, Quận Cẩm Lệ, Đà Nẵng</p>
+      <p class="text-[#ee2624] text-[10px] font-medium border border-[#ee2624] flex items-center px-3">Mặc định</p>
+      <a href="{% url 'address' %}" class="text-[#4080ee] text-[16px] font-medium">Thay đổi</a>
+    </div>
+  </div>
+  <div class="bg-white rounded-[10px] p-5 mt-5">
+    <div class="grid grid-cols-10">
+      <p class="text-black text-[18px] font-bold col-span-6">Sản phẩm</p>
+      <p class="text-[#888a8e] text-[14px] font-bold col-span-1 flex justify-end">Đơn giá</p>
+      <p class="text-[#888a8e] text-[14px] font-bold col-span-1 flex justify-end">Số lượng</p>
+      <p class="text-[#888a8e] text-[14px] font-bold col-span-2 flex justify-end">Thành tiền</p>
+    </div>
+    {% for item in items %}
+      <hr class="mt-3 mb-4" />
+      <div class="grid grid-cols-10 items-start">
+        <div class="text-black text-[18px] font-bold col-span-6">
+          <div class="flex gap-5">
+            <div class="">
+              <img src="{{ item.product.imageURL }}" class="h-[40px] w-[40px] rounded" alt="{{ item.product.name }}" />
+            </div>
+            <div class="flex flex-col justify-between items-start">
+              <p class="text-black text-[14px] font-bold w-[350px] overflow-hidden text-nowrap text-ellipsis">{{ item.product.name }}</p>
+              <p class="text-[#ee2624] text-[10px] font-medium border border-[#ee2624] flex items-center w-[145px] justify-center">Đổi trả miễn phí sau 15 ngày</p>
+            </div>
+            <div class="text-[#888a8e] text-[14px] font-medium min-w-[150px] flex justify-between gap">
+              <p>Thương hiệu:</p>
+              <p>{{ item.product.brand }}</p>
+            </div>
+          </div>
+        </div>
+        <p class="text-black text-[14px] font-medium col-span-1 flex justify-end">{{ item.product.new_price }}đ</p>
+        <p class="text-black text-[14px] font-medium col-span-1 flex justify-end">{{ item.quantity }}</p>
+        <p class="text-black text-[14px] font-medium col-span-2 flex justify-end">{{ item.get_total }}đ</p>
+      </div>
+    {% endfor %}
+    <hr class="my-4" />
+    <div class="flex justify-end gap-5 items-center">
+      <div class="min-w-[410px] flex justify-between items-center gap-4">
+        <p class="text-[#888a8e] text-[14px] font-medium">Tổng thanh toán ({{ order.get_cart_quantity }}) sản phẩm:</p>
+        <p class="text-[#ee2624] text-[20px] font-bold">{{ order.get_cart_total }}đ</p>
+      </div>
+    </div>
+    <hr class="my-4" />
+    <div class="flex justify-between items-center mt-5">
+      <p class="text-[#888a8e] text-[16px] font-medium">Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo Điều khoản Sendo</p>
+      <a href="{% url 'paymentSuccess' %}" class="text-white text-[16px] font-bold bg-[#ee2624] px-12 py-2 rounded">Đặt hàng</a>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var shipping = '{{order.shipping}}'
+    
+    if (shipping == 'False') {
+      document.getElementById('shipping-info').innerHTML = ''
+    }
+    
+    if (user != 'AnonymousUser') {
+      document.getElementById('user-info').innerHTML = ''
+    }
+    
+    if (shipping == 'False' && user != 'AnonymousUser') {
+      //Hide entire form if user is logged in and shipping is false
+      document.getElementById('form-wrapper').classList.add('hidden')
+      //Show payment if logged in user wants to buy an item that does not require shipping
+      document.getElementById('payment-info').classList.remove('hidden')
+    }
+    
+    var form = document.getElementById('form')
+    form.addEventListener('submit', function (e) {
+      e.preventDefault()
+      console.log('Form Submitted...')
+      document.getElementById('form-button').classList.add('hidden')
+      document.getElementById('payment-info').classList.remove('hidden')
+    })
+    
+    function submitFormData() {
+      console.log('Payment button clicked')
+    
+      var userFormData = {
+        name: null,
+        email: null,
+        total: total
+      }
+    
+      var shippingInfo = {
+        address: null,
+        state: null
+      }
+    
+      if (shipping != 'False') {
+        shippingInfo.address = form.address.value
+        shippingInfo.city = form.city.value
+        shippingInfo.state = form.state.value
+        shippingInfo.zipcode = form.zipcode.value
+      }
+    
+      if (user == 'AnonymousUser') {
+        userFormData.name = form.name.value
+        userFormData.email = form.email.value
+      }
+    
+      console.log('Shipping Info:', shippingInfo)
+      console.log('User Info:', userFormData)
+    
+      var url = '/process_order/'
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'applicaiton/json',
+          'X-CSRFToken': csrftoken
+        },
+        body: JSON.stringify({ form: userFormData, shipping: shippingInfo })
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data)
+          alert('Transaction completed')
+    
+          cart = {}
+          document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
+    
+          window.location.href = "{% url 'store' %}"
+        })
+    }
+  </script>
+{% endblock %}

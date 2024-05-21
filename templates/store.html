@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+
+{% block title %}
+  Sendo
+{% endblock %}
+
+{% block content %}
+  <div class="grid grid-cols-6 gap-4">
+    {% for product in Products %}
+      <a class="bg-white rounded-xl shadow-md hover:shadow-2xl hover:scale-[1.01]" href="/product/{{ product.id }}">
+        <img class="rounded-t-xl w-full h-[203px] object-cover" src="{{ product.imageURL }}" alt="{{ product.name }}" />
+        <div class="p-[8px] pt-[16px]">
+          <div class="text-[14px] text-black whitespace-nowrap overflow-hidden text-ellipsis">{{ product.name }}</div>
+          <div class="flex gap-1 mt-2">
+            <del class="text-[#b7bbbf] text-[11px] font-medium">{{ product.old_price }}đ</del>
+            <p class="text-[#ee2624] text-[12px] font-medium">-{{ product.persent }}%</p>
+          </div>
+          <div class="text-[#ee2624] text-[16px] font-bold">{{ product.new_price }}đ</div>
+          <div class="flex items-center bg-[#fdefe2] py-[2px] w-[65%] justify-center rounded-full gap-1 mt-2">
+            <img class="h-[12px] w-[12px]" src="https://media3.scdn.vn/img4/2021/08_20/WxthNRjjOz4mP6X4uLj3.png" alt="promotion-icon" />
+            <p class="text-[#d5600c] text-[11px] mt-[2px]">Mua trước trả sau</p>
+          </div>
+          <p class="text-[11px] text-black font-medium mt-2">Đã bán {{ product.sold }}</p>
+          <div class="flex justify-between items-center text-[11px] text-black font-medium">
+            <div class="flex gap-1 items-center">
+              <span>4.6/5</span>
+              <img class="h-[12px] w-[12px] mb-1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/2153px-Star_icon_stylized.svg.png" alt="star-icon" />
+            </div>
+            <div class="">Hà Nội</div>
+          </div>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+{% endblock %}

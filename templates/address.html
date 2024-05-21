@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Address
+{% endblock %}
+
+{% block content %}
+  <div class="">
+    <div class="bg-white mx-auto mt-5 px-10 py-8 min-w-[500px]">
+      <h1 class="text-3xl font-bold mb-4">Đặt hàng</h1>
+
+      <form>
+        <div class="mb-4">
+          <label for="ten" class="block text-gray-700 mb-2">Họ tên người nhận:</label>
+          <input class="form-input w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nhập tên người nhận" />
+        </div>
+
+        <div class="mb-4">
+          <label for="sdt" class="block text-gray-700 mb-2">Số điện thoại:</label>
+          <input class="form-input w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nhập số điện thoại" />
+        </div>
+
+        <div class="mb-4">
+          <label for="tinhthanh" class="block text-gray-700 mb-2">Tỉnh thành/ Quận huyện:</label>
+          <input class="form-input w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nhập tỉnh thành, quận huyện" />
+        </div>
+
+        <div class="mb-4">
+          <label for="phuongxa" class="block text-gray-700 mb-2">Phường/ Xã:</label>
+          <input class="form-input w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nhập phường, xã" />
+        </div>
+
+        <div class="mb-4">
+          <label for="diachi" class="block text-gray-700 mb-2">Địa chỉ:</label>
+          <input type="text" id="diachi" class="form-input w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nhập địa chỉ" />
+        </div>
+
+        <div class="flex justify-between mt-4">
+          <div class="flex justify-between mt-4 gap-5">
+            <button type="button" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Thanh toán</button>
+            <button type="button" class="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400">Hủy</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Register
+{% endblock %}
+
+{% block content %}
+  <style>
+    ul,
+    li {
+      display: none;
+    }
+    form > div {
+      display: flex;
+      flex-direction: column;
+    }
+    input {
+      min-width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.25rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+  <div class="flex items-center justify-center">
+    <div class="bg-white px-10 py-8 rounded shadow-md min-w-[400px] my-10">
+      <h1 class="text-3xl font-bold mb-6">Đăng ký</h1>
+      <form action="." method="POST" class="space-y-2">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="flex gap-5 items-center mt-3 font-bold" style="flex-direction: row">
+          <button type="submit" class="flex justify-center font-semibold text-[15px] px-4 py-2 text-white bg-[#ee2624] hover:bg-[#eb4a48] rounded w-[110px] cursor-pointer">Đăng ký</button>
+          <div class="text-gray-600">
+            Or <a href="{% url 'login' %}" class="text-[#ee2624] hover:text-[#f56565] px-4 py-2 font-bold ml-1">Đăng nhập</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

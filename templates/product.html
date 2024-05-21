@@ -1,0 +1,167 @@
+{% extends 'main.html' %}
+{% block title %}
+  product
+{% endblock %}
+{% block content %}
+  <div class="bg-white grid grid-cols-5 rounded-lg">
+    <div class="col-span-2">
+      <div class="p-5">
+        <img class="rounded-lg" src="{{ product.imageURL }}" alt="{{ product.name }}" />
+      </div>
+    </div>
+    <div class="col-span-3">
+      <div class="p-5">
+        <div class="text-black text-[20px] font-bold">{{ product.name }}</div>
+        <div class="text-black text-[14px] font-medium my-2">Thương hiệu: {{ product.brand }}</div>
+        <div class="text-[#ee2624] text-[24px] font-bold">{{ product.new_price }}đ</div>
+        <div class="">
+          <div class="text-[#ee2624] text-[14px] font-medium gap-2 flex my-1">
+            <del class="text-[#b7bbbf]">{{ product.old_price }}đ</del>
+            <p>Giảm {{ product.persent }}%</p>
+          </div>
+          <div class="flex gap-1 items-center">
+            <div class="flex gap-1 items-center mt-[2px]">
+              <img class="h-[12px] w-[12px] mb-1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/2153px-Star_icon_stylized.svg.png" alt="star-icon" />
+              <img class="h-[12px] w-[12px] mb-1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/2153px-Star_icon_stylized.svg.png" alt="star-icon" />
+              <img class="h-[12px] w-[12px] mb-1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/2153px-Star_icon_stylized.svg.png" alt="star-icon" />
+              <img class="h-[12px] w-[12px] mb-1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/2153px-Star_icon_stylized.svg.png" alt="star-icon" />
+              <img class="h-[12px] w-[12px] mb-1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/2153px-Star_icon_stylized.svg.png" alt="star-icon" />
+            </div>
+            <p class="text-[#0f62fe] text-[14px] font-medium">71 đánh giá</p>
+            <div class="text-[#6F787E] text-[14px]">•</div>
+            <div class="">
+              <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2" style="color: rgb(111, 120, 126); width: 16px; height: 16px;">
+                <path d="M12 2c2.489 0 4.672 1.815 4.966 4h2.881a2 2 0 0 1 1.98 2.283l-1.714 12A2 2 0 0 1 18.133 22H5.867a2 2 0 0 1-1.98-1.717l-1.714-12A2 2 0 0 1 4.153 6h2.88C7.329 3.815 9.512 2 12 2ZM7 8H4.153l1.714 12h12.266l1.714-12H17v2h-2V8H9v2H7V8Zm5-4c-1.398 0-2.624.938-2.928 2h5.856c-.304-1.062-1.53-2-2.928-2Z" fill="#6F787E" fill-rule="nonzero"></path>
+              </svg>
+            </div>
+            <p class="text-[#6F787E] text-[14px] font-medium">{{ product.sold }} lượt mua</p>
+          </div>
+          <hr class="my-5" />
+          <div class="grid grid-cols-10">
+            <div class="col-span-4 flex flex-col gap-5">
+              <div class="flex items-start">
+                <p class="text-[#6F787E] text-[14px] font-medium w-[180px]">Chọn số lượng:</p>
+                <div class="flex gap-[6px]">
+                  <div data-product="{{ product.id }}" data-action="removeAQuantity" class="update-cart h-[32px] w-[32px] flex justify-center items-center rounded bg-[#e7e8ea] cursor-pointer hover:bg-[#f3f4f5]">
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2 d7ed-w34diS h-[16px] w-[16px] text-black">
+                      <g id="24-/-basic-/-icon24_minus_default" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <path id="icon-background" fill="#6F787E" fill-rule="nonzero" d="M22 11v2H2v-2z"></path>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="h-[32px] w-[40px] border flex justify-center items-center rounded">{{ product.purchase.purchase }}</div>
+                  <div data-product="{{ product.id }}" data-action="addAQuantity" class="update-cart h-[32px] w-[32px] flex justify-center items-center rounded bg-[#e7e8ea] cursor-pointer hover:bg-[#f3f4f5]">
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2 d7ed-w34diS h-[16px] w-[16px] text-black">
+                      <g id="24-/-basic-/-icon24_plus_default" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <path id="icon-background" fill="#6F787E" fill-rule="nonzero" d="M13 11h9v2h-9v9h-2v-9H2v-2h9V2h2z"></path>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="bg-[#e7effe] py-[12px] px-[16px] flex justify-start items-center gap-2 rounded text-[16px] w-full mt-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2">
+              <path d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1zm1.004 8.998h-3.001v2h1v2h-1v2h4v-2h-1v-4zm-1.004-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill="#133096" fill-rule="nonzero"></path>
+            </svg>
+            <p class="text-black text-[14px] font-medium">Chỉ được mua {{ product.quantity }} sản phẩm khuyến mãi.</p>
+          </button>
+          <div class="grid grid-cols-2 gap-2 mt-2 mb-5">
+            {% if user.is_authenticated %}
+              <button data-product="{{ product.id }}" data-action="addQuantity" class="update-cart bg-[#e7e8ea] py-[12px] flex justify-center rounded text-[16px] text-[#3f4b53] font-bold hover:bg-[#f6f7f8]">Thêm vào giỏ</button>
+              <button data-product="{{ product.id }}" data-action="addQuantity" class="purchase w-full bg-[#ee2624] py-[12px] flex justify-center rounded text-[16px] text-white font-bold hover:bg-[#ee4e4c]">Mua ngay</button>
+            {% else %}
+              <a href="{% url 'login' %}" class="bg-[#e7e8ea] py-[12px] flex justify-center rounded text-[16px] text-[#3f4b53] font-bold hover:bg-[#f6f7f8]">Thêm vào giỏ</a>
+              <a href="{% url 'login' %}" class="w-full bg-[#ee2624] py-[12px] flex justify-center rounded text-[16px] text-white font-bold hover:bg-[#ee4e4c]">Mua ngay</a>
+            {% endif %}
+          </div>
+          <hr />
+          <div class="flex flex-col gap-2 my-5">
+            <div class="text-black text-[16px] font-bold">Mô tả sản phẩm</div>
+            <div class="text-black text-[14px] font-medium leading-6">{{ product.description }}</div>
+          </div>
+          <hr />
+          <div class="mt-5">
+            <div class="flex justify-between">
+              <div class="text-black text-[16px] font-bold">Ưu đãi dành cho bạn</div>
+              <div class="">
+                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2">
+                  <path d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1Zm0 2a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm1.004 6.998v4h.999v2h-4v-2h1v-2h-1v-2h3Zm-1.004-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z" fill="#6F787E" fill-rule="nonzero"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2 my-5">
+              <div class="flex flex-col gap-3">
+                <div class="flex item-center gap-2 text-black text-[14px] font-medium">
+                  <img class="h-[24px] w-[24px]" src="https://media3.scdn.vn/img4/2023/08_29/HDgWOVQr93hTWAFmecC3.png" alt="Trả sau AFTEE" />
+                  Trả sau AFTEE
+                </div>
+                <div class="flex item-center gap-2 text-black text-[14px] font-medium">
+                  <img class="h-[24px] w-[24px]" src="https://media3.scdn.vn/img4/2022/12_19/k4fhvv3i925lb0CUgGn4.png" alt="Trả góp Kredivo" />
+                  Trả góp Kredivo
+                </div>
+              </div>
+              <div class="flex flex-col gap-3">
+                <div class="flex item-center gap-2 text-black text-[14px] font-medium">
+                  <img class="h-[24px] w-[24px]" src="https://media3.scdn.vn/img4/2023/04_17/9wtTH9rjcQ4CVH1s7SeW.png" alt="Trả góp Muadee" />
+                  Trả góp Muadee
+                </div>
+                <div class="flex item-center gap-2 text-black text-[14px] font-medium">
+                  <img class="h-[24px] w-[24px]" src="https://media3.scdn.vn/img4/2021/05_10/HHDHM10eqVNmGUZE5EfA.png" alt="Giảm khi mua qua App" />
+                  Giảm khi mua qua App
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="mb-5" />
+          <div class="">
+            <div class="flex justify-between items-start">
+              <p class="text-black text-[16px] font-bold">Dịch vụ bảo hiểm</p>
+              <div class="">
+                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2">
+                  <path d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1Zm0 2a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm1.004 6.998v4h.999v2h-4v-2h1v-2h-1v-2h3Zm-1.004-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z" fill="#6F787E" fill-rule="nonzero"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="flex gap-1 my-3 items-center">
+              <img class="h-[24px] w-[24px]" src="https://media3.scdn.vn/img4/2023/04_28/Dqn555PbGWueXU2PvS8b.png" alt="Bảo hiểm thiết bị điện tử" />
+              <p class="text-black text-[14px] font-medium">Bảo hiểm thiết bị điện tử</p>
+            </div>
+          </div>
+          <hr class="mb-5" />
+          <div class="">
+            <div class="flex justify-between items-start">
+              <p class="text-black text-[16px] font-bold">Quyền lợi khách hàng & Bảo hành</p>
+              <div class="">
+                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2">
+                  <path d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1Zm0 2a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm1.004 6.998v4h.999v2h-4v-2h1v-2h-1v-2h3Zm-1.004-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z" fill="#6F787E" fill-rule="nonzero"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="flex gap-1 my-3 items-center mr-10">
+                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2">
+                  <g fill="none" fill-rule="evenodd">
+                    <path d="m19 15 .002-1.245.004-1.954.003-1.691c.004-2.232.003-4.148 0-4.74-.33-.206-.846-.524-1.118-.706C16.414 3.68 14.26 3 12 3 9.838 3 7.029 4.051 6.11 4.664c-.27.18-.779.494-1.11.7V15c0 1.508 2.23 3.569 7 5.802 4.772-2.228 7-4.288 7-5.802Z" fill="#D6EFDF"></path>
+                    <path d="M12 1c2.995 0 5.5 1 7 2s2 1 2 2c.026.291 0 8.5 0 10 0 2.667-3 5.333-9 8-6-2.673-9-5.34-9-8V5c0-1 .5-1 2-2 .162-.108 3.563-2 7-2Zm0 2C9.838 3 7.029 4.051 6.11 4.664c-.27.18-.779.494-1.11.7V15c0 1.508 2.23 3.569 7 5.802 4.772-2.228 7-4.288 7-5.802v-.694l.001-.167v-.384l.005-1.954.003-1.691v-.575c.004-1.98.003-3.625 0-4.166-.33-.205-.846-.523-1.118-.705C16.414 3.68 14.26 3 12 3Zm3.293 5.293 1.414 1.414L11 15.414l-3.707-3.707 1.414-1.414L11 12.586l4.293-4.293Z" fill="#449460"></path>
+                  </g>
+                </svg>
+                <p class="text-black text-[14px] font-medium">48 giờ hoàn trả</p>
+              </div>
+              <div class="flex gap-1 my-3 items-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2">
+                  <g fill="none" fill-rule="evenodd">
+                    <path d="m19 15 .002-1.245.004-1.954.003-1.691c.004-2.232.003-4.148 0-4.74-.33-.206-.846-.524-1.118-.706C16.414 3.68 14.26 3 12 3 9.838 3 7.029 4.051 6.11 4.664c-.27.18-.779.494-1.11.7V15c0 1.508 2.23 3.569 7 5.802 4.772-2.228 7-4.288 7-5.802Z" fill="#D6EFDF"></path>
+                    <path d="M12 1c2.995 0 5.5 1 7 2s2 1 2 2c.026.291 0 8.5 0 10 0 2.667-3 5.333-9 8-6-2.673-9-5.34-9-8V5c0-1 .5-1 2-2 .162-.108 3.563-2 7-2Zm0 2C9.838 3 7.029 4.051 6.11 4.664c-.27.18-.779.494-1.11.7V15c0 1.508 2.23 3.569 7 5.802 4.772-2.228 7-4.288 7-5.802v-.694l.001-.167v-.384l.005-1.954.003-1.691v-.575c.004-1.98.003-3.625 0-4.166-.33-.205-.846-.523-1.118-.705C16.414 3.68 14.26 3 12 3Zm3.293 5.293 1.414 1.414L11 15.414l-3.707-3.707 1.414-1.414L11 12.586l4.293-4.293Z" fill="#449460"></path>
+                  </g>
+                </svg>
+                <p class="text-black text-[14px] font-medium w-[140px]">Bảo hành theo chính sách từ Nhà bán hàng</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

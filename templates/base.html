@@ -1,0 +1,127 @@
+{% load static %} {% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://www.sendo.vn/w3front/static/favicon.ico" />
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/output.css' %}" />
+    {% endcompress %}
+    <title>
+      {% block title %}
+
+      {% endblock %}
+    </title>
+  </head>
+  <body>
+    <div class="fixed left-0 right-0 top-0 z-50">
+      <div class="w-full h-[30px] flex bg-[#d52220] gap-5 font-medium text-white pt-[2px] px-padding-page">
+        <a href="#">Tải ứng dụng</a>
+        <a href="#">Chăm sóc khách hàng</a>
+        <a href="#">Nhà cung cấp</a>
+      </div>
+      <div class="w-full px-padding-page bg-[#ee2624] h-[70px] flex flex-col justify-around">
+        <div class="flex justify-between items-center gap-5">
+          <a class="text-white text-[35px] italic font-bold cursor-pointer mr-4" href="{% url 'login' %}">Sendo</a>
+        </div>
+      </div>
+    </div>
+    <div class="block h-[100px]"></div>
+
+    <div class="px-padding-page bg-[#f2f3f4] py-5">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+    <div class="">
+      <div class="px-padding-page flex justify-around items-start p-5">
+        <div class="flex flex-col w-[210px] items-center">
+          <img data-src="https://media3.scdn.vn/img4/2020/12_16/gJwXr6FFZKZCGKWaz4RB.png" src="https://media3.scdn.vn/img4/2020/12_16/gJwXr6FFZKZCGKWaz4RB.png" alt="Siêu nhiều hàng tốt" class="ls-is-cached lazyloaded w-[130px] h-[88px] mb-[12px]" />
+          <a class="text-[13px] font-semibold text-black mb-[4px]">Siêu nhiều hàng tốt</a>
+          <a class="text-[13px] font-semibold text-[#6F787E] text-center">Cần gì cũng có 26 ngành hàng & 10 triệu sản phẩm</a>
+        </div>
+        <div class="flex flex-col w-[210px] items-center">
+          <img data-src="https://media3.scdn.vn/img4/2020/12_16/EfZWQVfV6nQzu2vMmnwC.png" src="https://media3.scdn.vn/img4/2020/12_16/EfZWQVfV6nQzu2vMmnwC.png" alt="Siêu yên tâm" class="ls-is-cached lazyloaded w-[130px] h-[88px] mb-[12px]" />
+          <a class="text-[13px] font-semibold text-black mb-[4px]">Siêu yên tâm</a>
+          <a class="text-[13px] font-semibold text-[#6F787E] text-center">Miễn phí đổi trả 48h</a>
+        </div> <div class="flex flex-col w-[210px] items-center">
+          <img data-src="https://media3.scdn.vn/img4/2020/12_16/j5C6IQz7gIXPgjFJxmRz.png" src="https://media3.scdn.vn/img4/2020/12_16/j5C6IQz7gIXPgjFJxmRz.png" alt="Siêu tiện lợi" class="ls-is-cached lazyloaded w-[130px] h-[88px] mb-[12px]" />
+          <a class="text-[13px] font-semibold text-black mb-[4px]">Siêu tiện lợi</a>
+          <a class="text-[13px] font-semibold text-[#6F787E] text-center">Mang thế giới mua sắm của Sendo trong tầm tay bạn</a>
+        </div> <div class="flex flex-col w-[210px] items-center">
+          <img data-src="https://media3.scdn.vn/img4/2020/12_16/7AJFQGQ5qvS7gGOz8P7a.png" src="https://media3.scdn.vn/img4/2020/12_16/7AJFQGQ5qvS7gGOz8P7a.png" alt="Siêu tiết kiệm" class="ls-is-cached lazyloaded w-[130px] h-[88px] mb-[12px]" />
+          <a class="text-[13px] font-semibold text-black mb-[4px]">Siêu tiết kiệm</a>
+          <a class="text-[13px] font-semibold text-[#6F787E] text-center">Giá hợp lý, vừa túi tiền. Luôn có nhiều chương trình khuyến mãi</a>
+        </div>
+      </div>
+      <div class="px-padding-page bg-[#f2f3f4] grid grid-cols-4 py-[30px]">
+        <div class="flex flex-col">
+          <div class="text-[13px] font-semibold text-black mb-[10px]">VỀ CHÚNG TÔI</div>
+          <a href="#" class="text-[13px] font-medium text-[#6F787E] mb-[4px]">Giới thiệu Sendo.vn</a>
+          <a href="#" class="text-[13px] font-medium text-[#6F787E] mb-[4px]">Giới thiệu SenMall</a>
+          <a href="#" class="text-[13px] font-medium text-[#6F787E] mb-[4px]">Quy chế hoạt động</a>
+          <a href="#" class="text-[13px] font-medium text-[#6F787E] mb-[4px]">Chính sách bảo mật</a>
+          <a href="#" class="text-[13px] font-medium text-[#6F787E] mb-[4px]">Giao hàng và Nhận hàng</a>
+          <a href="#" class="text-[13px] font-medium text-[#6F787E] mb-[4px]">Điều khoản sử dụng</a>
+        </div>
+        <div class="flex flex-col">
+          <div class="text-[13px] font-semibold text-black mb-[10px]">DÀNH CHO NGƯỜI MUA</div>
+          <a href="#" class="text-[13px] font-medium text-[#6F787E] mb-[4px]">Giải quyết khiếu nại</a>
+          <a href="#" class="text-[13px] font-medium text-[#6F787E] mb-[4px]">Hướng dẫn mua hàng</a>
+          <a href="#" class="text-[13px] font-medium text-[#6F787E] mb-[4px]">Chính sách đổi trả</a>
+          <a href="#" class="text-[13px] font-medium text-[#6F787E] mb-[4px]">Chăm sóc khách hàng</a>
+          <a href="#" class="text-[13px] font-medium text-[#6F787E] mb-[4px]">Nạp tiền điện thoại</a>
+        </div>
+        <div class="flex flex-col">
+          <div class="text-[13px] font-semibold text-black mb-[10px]">DÀNH CHO NGƯỜI BÁN</div>
+          <a href="#" class="text-[13px] font-medium text-[#6F787E] mb-[4px]">Quy định đối với người bán</a>
+          <a href="#" class="text-[13px] font-medium text-[#6F787E] mb-[4px]">Chính sách bán hàng</a>
+          <a href="#" class="text-[13px] font-medium text-[#6F787E] mb-[4px]">Hệ thống tiêu chí kiểm duyệt</a>
+          <a href="#" class="text-[13px] font-medium text-[#6F787E] mb-[4px]">Mở shop trên Sendo</a>
+        </div>
+        <div class="flex flex-col">
+          <div class="text-[13px] font-semibold text-black mb-[10px]">TẢI ỨNG DỤNG SENDO</div>
+          <a href="#" class="w-[200px] text-[13px] font-medium text-[#6F787E] mb-[12px]">Mang thế giới mua sắm của Sendo trong tầm tay bạn</a>
+          <div class="grid grid-cols-2 gap-2 w-[220px]">
+            <a href="https://apps.apple.com/vn/app/sendo-ch%E1%BB%A3-c%E1%BB%A7a-ng%C6%B0%E1%BB%9Di-vi%E1%BB%87t/id940313804?mt=8" class=""><img data-src="https://media3.scdn.vn/img4/2020/12_16/5lUTWdk3DXr8nlC9MDII.png" src="https://media3.scdn.vn/img4/2020/12_16/5lUTWdk3DXr8nlC9MDII.png" alt="app-store" class="a258-bmyjdn ls-is-cached lazyloaded" /></a>
+            <a href="https://play.google.com/store/apps/details?id=com.sendo&referrer=af_tranid%3DdOiHmmyU2BW-SvwJMlhheQ%26utm_source%3DAndroid_gioithieu_taiapp%26pid%3DAndroid_gioithieu_taiapp" class=""><img data-src="https://media3.scdn.vn/img4/2021/10_26/0ZARLASzVrfL92924rzW.png" src="https://media3.scdn.vn/img4/2021/10_26/0ZARLASzVrfL92924rzW.png" alt="google-play" class="a258-bmyjdn ls-is-cached lazyloaded" /></a>
+            <a href="https://appgallery.huawei.com/Featured" class=""><img data-src="https://media3.scdn.vn/img4/2021/03_19/AMV086JNpEbm4OGAvVng.png" src="https://media3.scdn.vn/img4/2021/03_19/AMV086JNpEbm4OGAvVng.png" alt="app-gallery" class="a258-bmyjdn ls-is-cached lazyloaded" /></a>
+          </div>
+        </div>
+      </div>
+      <div class="px-padding-page py-[30px] bg-[#27343e] grid grid-cols-2">
+        <div class="w-[545px]">
+          <div class="text-[13px] font-semibold text-white mb-[16px]">Công ty Cổ phần Công nghệ Sen Đỏ, thành viên của Tập đoàn FPT</div>
+          <div class="text-[13px] font-normal text-white mb-[8px]">Số ĐKKD: 0312776486 - Ngày cấp: 13/05/2014, được sửa đổi lần thứ 20, ngày 26/04/2022.</div>
+          <div class="text-[13px] font-normal text-white mb-[8px]">Cơ quan cấp: Sở Kế hoạch và Đầu tư TPHCM.</div>
+          <div class="text-[13px] font-normal text-white mb-[8px]">Địa chỉ: Tầng 5, Tòa nhà A, Vườn Ươm Doanh Nghiệp, Lô D.01, Đường Tân Thuận, Khu chế xuất Tân Thuận, Phường Tân Thuận Đông, Quận 7, Thành phố Hồ Chí Minh, Việt Nam.</div>
+          <div class="text-[13px] font-normal text-white mb-[14px]">
+            Email: <a href="" class="">lienhe@sendo.vn</a>
+          </div>
+          <div class="flex gap-8">
+            <a href="#"><img data-src="https://media3.scdn.vn/img4/2020/12_16/XhpGDnvWqrlKeHLst3aS.png" src="https://media3.scdn.vn/img4/2020/12_16/XhpGDnvWqrlKeHLst3aS.png" alt="Bộ Công Thương" class="a258-qXDOtl ls-is-cached lazyloaded h-[42px]" /></a>
+            <a href="#"><img data-src="https://media3.scdn.vn/img4/2020/12_16/h6lEMGIAt4Uapd0Mls34.png" src="https://media3.scdn.vn/img4/2020/12_16/h6lEMGIAt4Uapd0Mls34.png" alt="Bộ Công Thương - Nói không với hàng giả" class="a258-qXDOtl ls-is-cached lazyloaded h-[42px]" /></a>
+          </div>
+        </div>
+        <div class="">
+          <div class="text-[13px] font-semibold text-white mb-[16px]">Đăng ký nhận bản tin ưu đãi khủng từ Sendo</div>
+          <div class="flex justify-start items-center gap-2">
+            <input type="text" placeholder="Email của bạn là" class="outline-none py-1 pl-4 w-[400px] rounded" />
+            <div class="cursor-pointer py-1 px-4 bg-[#ee2624] text-white font-semibold rounded">Đăng ký</div>
+          </div>
+        </div>
+      </div>
+      <div class="px-padding-page flex justify-center py-3 text-[13px] font-semibold">© 2018 - Bản quyền thuộc về Công ty TNHH Sendo</div>
+      <div class="fixed bottom-7 right-7">
+        <div class="flex bg-[#3f81fe] px-5 py-2 rounded cursor-pointer items-center gap-2">
+          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" color="#fff" class="d7ed-SwZDZ2">
+            <path d="M20 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-7.913L6 21.804V18H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16Zm0 2H4v12h4v2.196L11.513 16H20V4Zm-6 7v2H7v-2h7Zm2-4v2H7V7h9Z" fill="#fff" fill-rule="nonzero"></path>
+          </svg>
+          <p class="text-white text-[18px] font-semibold">Chat</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

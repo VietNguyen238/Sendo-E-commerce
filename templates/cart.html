@@ -1,0 +1,122 @@
+{% extends 'main.html' %}
+{% block title %}
+  giỏ hàng
+{% endblock %}
+{% block content %}
+  <div class="flex items-center">
+    <div class="text-[20px] font-bold text-black mr-6">Giỏ hàng của bạn (1)</div>
+    <button class="px-[16px] py-[6px] text-[#3f4b53] text-[14px] font-bold bg-white rounded">Sửa</button>
+  </div>
+  <div class="grid grid-cols-3 mt-6 gap-[25px]">
+    <div class="col-span-2 flex flex-col gap-[25px]">
+      {% for item in items %}
+        <div class="bg-white px-8 pt-3 pb-6 rounded-lg font-bold text-[14px] text-black">
+          <div class="flex justify-between items-center">
+            <div class="flex gap-2 items-center">
+              <img class="h-[24px] w-[24px] rounded-full object-cover" src="https://media3.scdn.vn/img4/2023/02_06/I55tDZVCzwgKaLEuEcQT_simg_34545b_120x60_maxb.png" alt="Giá lẻ rẻ hơn giá buôn" />
+              <div class="">Giá lẻ rẻ hơn giá buôn</div>
+            </div>
+            <button class="flex gap-2 hover:bg-slate-50 p-2 rounded">
+              <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2 d7ed-w34diS">
+                <path d="M20 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-7.913L6 21.804V18H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16Zm0 2H4v12h4v2.196L11.513 16H20V4Zm-6 7v2H7v-2h7Zm2-4v2H7V7h9Z" fill="#6F787E" fill-rule="nonzero"></path>
+              </svg>
+              <div class="">Chat với Shop</div>
+            </button>
+          </div>
+          <div class="flex justify-between mt-[10px]">
+            <div class="flex gap-3 w-[55%]">
+              <img class="h-[80px] w-[80px] rounded object-cover cursor-pointer" src="{{ item.product.imageURL }}" alt="{{ item.product.name }}" />
+              <div class="w-[40%]">
+                <div class="flex justify-center py-1 rounded-full text-[#133096] bg-[#e2e6f2] text-[12px] w-[130px] mb-3">Mua trước trả sau</div>
+                <div class="text-[14px] text-black font-medium w-[180%] hover:w-[280px] whitespace-nowrap text-ellipsis hover:overflow-visible overflow-hidden cursor-pointer">{{ item.product.name }}</div>
+              </div>
+            </div>
+            <div class="flex flex-col items-end">
+              <div class="text-[16px] font-bold text-black">{{ item.product.new_price }}đ</div>
+              <del class="text-[11px] font-medium text-[#b7bbbf]">{{ item.product.old_price }}đ</del>
+            </div>
+            <div class="flex flex-col">
+              <div class="flex gap-[6px]">
+                <div data-product="{{ item.product.id }}" data-action="remove" class="update-cart h-[32px] w-[32px] flex justify-center items-center rounded bg-[#e7e8ea] cursor-pointer hover:bg-[#f3f4f5]">
+                  <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2 d7ed-w34diS h-[16px] w-[16px] text-black">
+                    <g id="24-/-basic-/-icon24_minus_default" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <path id="icon-background" fill="#6F787E" fill-rule="nonzero" d="M22 11v2H2v-2z"></path>
+                    </g>
+                  </svg>
+                </div>
+                <div class="h-[32px] w-[40px] border flex justify-center items-center rounded">{{ item.quantity }}</div>
+                <div data-product="{{ item.product.id }}" data-action="add" class="update-cart h-[32px] w-[32px] flex justify-center items-center rounded bg-[#e7e8ea] cursor-pointer hover:bg-[#f3f4f5]">
+                  <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2 d7ed-w34diS h-[16px] w-[16px] text-black">
+                    <g id="24-/-basic-/-icon24_plus_default" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <path id="icon-background" fill="#6F787E" fill-rule="nonzero" d="M13 11h9v2h-9v9h-2v-9H2v-2h9V2h2z"></path>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div class="text-[#ee6c0e] text-[12px] font-medium w-[120px] mt-2 text-center">Chỉ được mua {{ item.product.quantity }} sản phẩm khuyến mãi này.</div>
+            </div>
+            <div class="flex items-start gap-6">
+              <div class="h-[32px] w-[32px] p-[7px] flex justify-center items-center cursor-pointer hover:bg-slate-50">
+                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2 d7ed-w34diS h-[16px] w-[16px] text-black">
+                  <path d="M16.553 2C20.258 2.015 23 5.14 23 9.12c0 3.038-1.694 5.972-4.849 8.81-1.656 1.49-3.77 2.963-5.285 3.747l-.866.45-.866-.45c-1.515-.784-3.63-2.258-5.285-3.747C2.694 15.092 1 12.158 1 9.12 1 5.097 3.716 2 7.455 2c1.395 0 2.376.189 3.467.728a6.3 6.3 0 0 1 1.068.668 6.17 6.17 0 0 1 1.113-.7c1.07-.524 2.003-.696 3.45-.696Zm-.004 2c-1.162 0-1.803.118-2.567.492-.47.23-.887.541-1.25.936l-.73.79-.735-.784a4.266 4.266 0 0 0-1.232-.913C9.248 4.13 8.565 4 7.455 4 4.884 4 3 6.148 3 9.12c0 2.38 1.414 4.83 4.186 7.323 1.512 1.36 3.455 2.718 4.814 3.43 1.359-.712 3.302-2.07 4.814-3.43C19.586 13.949 21 11.5 21 9.12c0-2.931-1.912-5.11-4.45-5.12Z" fill="#6F787E" fill-rule="nonzero"></path>
+                </svg>
+              </div>
+              <div data-product="{{ item.product.id }}" data-action="delete" class="update-cart h-[32px] w-[32px] p-[7px] flex justify-center items-center cursor-pointer hover:bg-slate-50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2 d7ed-w34diS h-[16px] w-[16px] text-black">
+                  <path d="M14 1c.537 0 1.042.214 1.414.586.308.307.509.708.575 1.211L16 3v1h2.5a2.49 2.49 0 0 1 1.623.599l.145.133c.404.405.66.937.723 1.564L21 6.5V9h-1.111l-.62 11.166a2.997 2.997 0 0 1-.789 1.866l-.145.147c-.49.463-1.12.75-1.844.812l-.218.009H7.727a2.994 2.994 0 0 1-2.975-2.616l-.02-.218L4.11 9H3V6.5c0-.671.267-1.303.732-1.768.405-.404.937-.66 1.564-.723L5.5 4H8V3c0-.477.169-.93.468-1.285l.118-.13c.307-.307.708-.508 1.211-.574L10 1zm3.885 8H6.114l.611 11.012.012.132c.032.224.14.428.303.582a.99.99 0 0 0 .687.274h8.503l.132-.004a.994.994 0 0 0 .598-.27.996.996 0 0 0 .312-.67L17.885 9zM9 11a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0v-6a1 1 0 0 1 1-1zm3 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0v-6a1 1 0 0 1 1-1zm3 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0v-6a1 1 0 0 1 1-1zM8 5.998H5.55l-.102.005A.495.495 0 0 0 5 6.5V7h14.001v-.45l-.004-.102A.495.495 0 0 0 18.5 6H8v-.002zm2.067-3L10 3v1h4.001l.001-.933L14 3l-3.932-.002z" fill="#6F787E" fill-rule="nonzero"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <a class="flex items-center gap-3 mt-[20px]" href="#">
+              <div class="">
+                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2">
+                  <g fill="none" fill-rule="nonzero">
+                    <path fill="#CFD2D4" d="M14 6h7v12h-7z"></path>
+                    <path d="M21 4a2 2 0 0 1 2 2v3.112l-.5.289A2.998 2.998 0 0 0 21 12c0 1.084.579 2.066 1.5 2.6l.5.288V18a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3.112l.5-.289A2.998 2.998 0 0 0 3 12a2.998 2.998 0 0 0-1.5-2.6L1 9.113V6a2 2 0 0 1 2-2h18Zm0 2-6-.001a1 1 0 0 1-.883.994L14 7a1 1 0 0 1-1-1.001L3 6v2c1.241.93 2 2.4 2 4s-.759 3.07-2 4v2l10-.001a1 1 0 0 1 1.993-.116L15 18 21 18v-2c-1.241-.93-2-2.4-2-4s.759-3.07 2-4V6Zm-7 8a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z" fill="#6F787E"></path>
+                  </g>
+                </svg>
+              </div>
+              <div class="text-[14px] text-black font-medium">Mã giảm giá của Shop</div>
+              <div class="">
+                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2 _96ac-BqnBgB">
+                  <path fill="#6F787E" fill-rule="nonzero" d="M13.214 12 8 6.476 9.393 5 16 12l-6.607 7L8 17.524z"></path>
+                </svg>
+              </div>
+            </a>
+            <div class="text-[16px] text-black font-medium w-[200px] flex gap-1 justify-between items-center">
+              <h3 class="font-bold">Total:</h3> {{ item.get_total }}đ
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="col-span-1">
+      <div class="bg-white px-8 pt-5 pb-6 rounded-lg">
+        <div class="flex justify-between">
+          <div class="flex gap-1 text-[14px] text-black font-bold">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" class="d7ed-SwZDZ2">
+              <g fill="none" fill-rule="nonzero">
+                <path fill="#CFD2D4" d="M14 6h7v12h-7z"></path>
+                <path d="M21 4a2 2 0 0 1 2 2v3.112l-.5.289A2.998 2.998 0 0 0 21 12c0 1.084.579 2.066 1.5 2.6l.5.288V18a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3.112l.5-.289A2.998 2.998 0 0 0 3 12a2.998 2.998 0 0 0-1.5-2.6L1 9.113V6a2 2 0 0 1 2-2h18Zm0 2-6-.001a1 1 0 0 1-.883.994L14 7a1 1 0 0 1-1-1.001L3 6v2c1.241.93 2 2.4 2 4s-.759 3.07-2 4v2l10-.001a1 1 0 0 1 1.993-.116L15 18 21 18v-2c-1.241-.93-2-2.4-2-4s.759-3.07 2-4V6Zm-7 8a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm0-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z" fill="#6F787E"></path>
+              </g>
+            </svg>Mã ưu đãi Sendo
+          </div>
+          <div class="text-[#0f62fe] text-[14px] font-medium">Chọn/nhập mã</div>
+        </div>
+        <hr class="my-3" />
+        <div class="flex justify-between items-center">
+          <div class="text-black font-medium text-[14px]">Số lượng:</div>
+          <div class="font-bold text-black text-[14px]">{{ order.get_cart_quantity }}</div>
+        </div>
+        <div class="flex justify-between items-center">
+          <div class="text-black font-medium text-[14px]">Tạm tính:</div>
+          <div class="font-bold text-black text-[20px]">{{ order.get_cart_total }}đ</div>
+        </div>
+        <hr class="mt-3 mb-4" />
+        <a href="{% url 'checkout' %}"><div class="flex justify-center items-center rounded py-[12px] bg-[#ee2624] font-bold text-[16px] text-white w-full mt-3">Mua ngay</div></a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
